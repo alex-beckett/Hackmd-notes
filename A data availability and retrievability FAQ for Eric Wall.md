@@ -13,7 +13,7 @@ The data availability problem is concerned with the ability for nodes to verify 
 In the context of light clients, the data availability problem is concerned with the ability for them to verify that a block is available without downloading the entire block. In Celestia, this is achieved through data availability sampling.
 
 ## What is the data retrievability problem?
-The data retrievability problem refers to the ability for historical data to be retrieved - any block that has had another block built on top of it is historical. Fortunately, the ability to retrieve data is the weakest possible assumption, 1-of-N, where only a single copy of the data needs to be retrievable from anywhere on the internet. 
+The data retrievability problem refers to the ability for historical data to be retrieved - any block that has had another block built on top of it is historical. Fortunately, the ability to retrieve data is the weakest possible assumption, 1-of-N, where only a single copy of the data needs to be retrievable from anywhere on the internet. Unlike state, history can be stored on inexpensive hard drives.
 
 ## Does a blockchain need to ensure that all historical data is retrievable forever?
 No. It is not the job of a blockchain to guarantee that its history is retrievable in perpetuity. This is evident by the fact that the majority of blockchains don’t incentivize storage of historical data, including Bitcoin. However, this does not mean that other parties won’t have motive to store the history partially or fully without incentives from the protocol. 
@@ -31,7 +31,7 @@ Yes.
 No. The purpose of sampling is to provide the node a probabilistic guarantee that data is available. This is the same case for full nodes – they don’t need to be aware of other full nodes downloading the block because security guarantees are derived from downloading the block themselves.
 
 ## Do light nodes require a connection to other nodes to make samples?
-Yes. This is also true for full nodes in other blockchains – they don’t sample but they require a connection to at least one other node that will provide them with the block.
+Yes. This is also true for full nodes in all blockchains – they don’t conduct data availability sampling but they require a connection to at least one other node that will provide them with historical data over the p2p network. *Nodes dont receive block data out of thin air.*
 
 ## What other assumptions does Celestia require to ensure that data availability sampling is secure?
 Celestia assumes that there is a minimum number of light nodes that are sampling blocks such that the blocks can be fully reconstructed from the stored samples. Since Celestia plans to elastically change its block size, it must require that a larger number of light nodes are present in the network to increase the block size. 
@@ -39,10 +39,14 @@ Celestia assumes that there is a minimum number of light nodes that are sampling
 The other assumption that is made by light nodes is that they are connected to at least one honest full node. This ensures that they can receive fraud proofs for incorrectly erasure coded blocks. If a light node is not connected to an honest full node, such as during an eclipse attack, it can’t verify that the block is improperly constructed.
 
 ## Does the probability of losing some historical data increase as a blockchain’s history grows?
-Yes. Even if some history is lost it does not impact the overall security and function of the blockchain. Validators can continue voting and producing new blocks. In PoS, new full nodes can bootstrap needing only the historical data up to the weak subjectivity checkpoint. Any party that requires historical data for certain functions, such as applications or rollups, should store their own data if they require stronger retrievability guarantees.
+Yes. Even if some history is unable to be retrieved it does not impact the overall security and function of the blockchain. Validators can continue voting and producing new blocks. In PoS, new full nodes can bootstrap needing only the historical data up to the weak subjectivity checkpoint. Any party that requires historical data for certain functions, such as applications or rollups, should store their own data if they require stronger retrievability guarantees.
 
 ## If a blockchain wanted to provide stronger assurances of retrievability, what could it do?
 A couple things:
 - Rewarding nodes based on the amount of data they store and requests for data they serve (this is the case with some data storage blockchains).
 - Stick data onto a data storage blockchain that does the above.
+
+___
+
+### If you want to dive further into the topic of what happens if data is removed from the history (history expiry) check out [this AMA with Vitalik]("https://www.reddit.com/r/ethereum/comments/qzvsfq/impromptu_technical_ama_on_history_expiry/")
 
