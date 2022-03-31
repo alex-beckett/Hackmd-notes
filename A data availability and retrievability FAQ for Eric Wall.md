@@ -1,5 +1,5 @@
-# A data availability and retrievability FAQ for Eric Wall
-*This is a non-exhaustive list of questions that have come up in your discussions regarding data availability.*
+# A brief data availability and retrievability FAQ
+*This is a non-exhaustive list of questions that have come up in Eric Wall's discussions regarding data availability.*
 
 ### What is data availability?
 Data availability refers to the availability of transactions in a block that is appended to the tip of the chain. During consensus, validators download the block to verify its availability. If the block contains any transactions that are withheld by a validator, the block is unavailable and will be rejected as invalid.
@@ -13,7 +13,7 @@ The data availability problem is concerned with the ability for nodes to verify 
 In the context of light clients, the data availability problem is concerned with the ability for them to verify that a block is available without downloading the entire block. In Celestia, this is achieved through data availability sampling.
 
 ## What is the data retrievability problem?
-The data retrievability problem refers to the ability for historical data to be retrieved - any block that has had another block built on top of it is historical. Fortunately, the ability to retrieve data is the weakest possible assumption, 1-of-N, where only a single copy of the data needs to be retrievable from anywhere on the internet. Unlike state, history can be stored on inexpensive hard drives.
+The data retrievability problem refers to the ability for historical data to be retrieved - any block that has had another block built on top of it is historical. Fortunately, the ability to retrieve data is the weakest possible assumption, 1-of-N, where only a single copy of the data needs to be retrievable from anywhere on the internet. Additionally, history can be stored on inexpensive hard drives.
 
 ## Does a blockchain need to ensure that all historical data is retrievable forever?
 No. It is not the job of a blockchain to guarantee that its history is retrievable in perpetuity. This is evident by the fact that the majority of blockchains don’t incentivize storage of historical data, including Bitcoin. However, this does not mean that other parties won’t have motive to store the history partially or fully without incentives from the protocol. 
