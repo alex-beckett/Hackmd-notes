@@ -48,5 +48,5 @@ A couple things:
 
 ___
 
-### If you want to dive further into the topic of what happens if data is removed from the history (history expiry) check out [this AMA with Vitalik]("https://www.reddit.com/r/ethereum/comments/qzvsfq/impromptu_technical_ama_on_history_expiry/")
+### If you want to dive further into the topic of what happens if data is removed from the history (history expiry) check out [this AMA with Vitalik](https://www.reddit.com/r/ethereum/comments/qzvsfq/impromptu_technical_ama_on_history_expiry)
 
